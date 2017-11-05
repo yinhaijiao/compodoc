@@ -6,6 +6,7 @@ import { ConfigurationInterface } from '../interfaces/configuration.interface';
 import { FileEngine } from './file.engine';
 
 import { ExportJsonEngine } from './export-json.engine';
+import { ExportPdfEngine } from './export-pdf.engine';
 
 import { ExportData } from '../interfaces/export-data.interface';
 
@@ -26,6 +27,9 @@ export class ExportEngine {
         switch (this.configuration.mainData.exportFormat) {
             case 'json':
                 this._engine = new ExportJsonEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
+                return this._engine.export(outputFolder, data);
+            case 'pdf':
+                this._engine = new ExportPdfEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
                 return this._engine.export(outputFolder, data);
         }
     }
