@@ -10,22 +10,23 @@ import { CoverageEngine } from './coverage.engine';
 import { ExportData } from '../interfaces/export-data.interface';
 
 const traverse = require('traverse'),
-      PdfPrinter = require('pdfmake');
+    PdfPrinter = require('pdfmake');
 
 export class ExportPdfEngine {
     constructor(
         private configuration: ConfigurationInterface,
         private dependenciesEngine: DependenciesEngine,
-        private fileEngine: FileEngine = new FileEngine()) {
+        private fileEngine: FileEngine = new FileEngine(),
+        private coverageEngine: CoverageEngine) {
     }
 
     export(outputFolder, data) {
 
         let fonts = {
-        	Roboto: {
-        		normal: path.join(__dirname, '../src/resources/fonts/roboto-v15-latin-regular.ttf'),
-        		bold: path.join(__dirname, '../src/resources/fonts/roboto-v15-latin-300.ttf')
-        	}
+            Roboto: {
+                normal: path.join(__dirname, '../src/resources/fonts/roboto-v15-latin-regular.ttf'),
+                bold: path.join(__dirname, '../src/resources/fonts/roboto-v15-latin-700.ttf')
+            }
         };
 
         let printer = new PdfPrinter(fonts);
@@ -33,21 +34,15 @@ export class ExportPdfEngine {
         let docDefinition = {
             content: [],
             styles: {
-        		header: {
-        			fontSize: 18,
-        			bold: true
-        		},
-        		subheader: {
-        			fontSize: 15,
-        			bold: true
-        		},
-        		quote: {
-        			italics: true
-        		},
-        		small: {
-        			fontSize: 8
-        		}
-        	}
+                header: {
+                    fontSize: 18,
+                    bold: true
+                },
+                subheader: {
+                    fontSize: 15,
+                    bold: true
+                }
+            }
         };
 
         docDefinition.content.push({
@@ -72,27 +67,28 @@ export class ExportPdfEngine {
         }
 
         docDefinition.content.push({
-			toc: {
-				title: {
+            toc: {
+                title: {
                     text: 'Table of contents',
                     bold: true,
                     alignment: 'center',
                     fontSize: 18,
                     margin: [10, 10, 10, 50]
                 },
-				numberStyle: {
+                numberStyle: {
                     bold: true
                 }
-			},
+            },
             pageBreak: 'after'
-		});
+        });
 
         docDefinition.content.push({
             text: 'Second page',
-            tocItem: true
+            tocItem: true,
+            style: 'header'
         });
 
-        docDefinition.content.push(CoverageEngine.calculateTable())
+        docDefinition.content.push(this.coverageEngine.calculateTable())
 
         let pdfDoc = printer.createPdfKitDocument(docDefinition);
 

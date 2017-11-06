@@ -86,8 +86,8 @@ export class Application {
         this.ngdEngine = new NgdEngine(this.dependenciesEngine);
         this.htmlEngine = new HtmlEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
         this.searchEngine = new SearchEngine(this.configuration, this.fileEngine);
-        this.exportEngine = new ExportEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
         this.coverageEngine = new CoverageEngine(this.configuration, this.dependenciesEngine, this.fileEngine, this.htmlEngine);
+        this.exportEngine = new ExportEngine(this.configuration, this.dependenciesEngine, this.fileEngine, this.coverageEngine);
 
         for (let option in options) {
             if (typeof this.configuration.mainData[option] !== 'undefined') {

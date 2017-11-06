@@ -19,7 +19,8 @@ export class ExportEngine {
     constructor(
         private configuration: ConfigurationInterface,
         private dependenciesEngine: DependenciesEngine,
-        private fileEngine: FileEngine = new FileEngine()) {
+        private fileEngine: FileEngine = new FileEngine(),
+        private coverageEngine: CoverageEngine) {
     }
 
     export(outputFolder, data) {
@@ -29,7 +30,7 @@ export class ExportEngine {
                 this._engine = new ExportJsonEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
                 return this._engine.export(outputFolder, data);
             case 'pdf':
-                this._engine = new ExportPdfEngine(this.configuration, this.dependenciesEngine, this.fileEngine);
+                this._engine = new ExportPdfEngine(this.configuration, this.dependenciesEngine, this.fileEngine, this.coverageEngine);
                 return this._engine.export(outputFolder, data);
         }
     }
