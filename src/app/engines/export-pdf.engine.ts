@@ -5,6 +5,7 @@ import { logger } from '../../logger';
 import { DependenciesEngine } from './dependencies.engine';
 import { ConfigurationInterface } from '../interfaces/configuration.interface';
 import { FileEngine } from './file.engine';
+import { CoverageEngine } from './coverage.engine';
 
 import { ExportData } from '../interfaces/export-data.interface';
 
@@ -90,6 +91,8 @@ export class ExportPdfEngine {
             text: 'Second page',
             tocItem: true
         });
+
+        docDefinition.content.push(CoverageEngine.calculateTable())
 
         let pdfDoc = printer.createPdfKitDocument(docDefinition);
 
