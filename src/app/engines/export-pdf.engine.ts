@@ -6,7 +6,7 @@ import { logger } from '../../logger';
 import { DependenciesEngine } from './dependencies.engine';
 import { ConfigurationInterface } from '../interfaces/configuration.interface';
 import { FileEngine } from './file.engine';
-import { CoverageEngine } from './coverage.engine';
+import { CoverageEngine } from './coverage-report.engine';
 
 import { ExportData } from '../interfaces/export-data.interface';
 

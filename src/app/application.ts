@@ -18,7 +18,7 @@ import { ConfigurationInterface } from './interfaces/configuration.interface';
 import { NgdEngine } from './engines/ngd.engine';
 import { SearchEngine } from './engines/search.engine';
 import { ExportEngine } from './engines/export.engine';
-import { CoverageEngine } from './engines/coverage.engine';
+import { CoverageEngine } from './engines/coverage-report.engine';
 import { Dependencies } from './compiler/dependencies';
 
 import { COMPODOC_DEFAULTS } from '../utils/defaults';
