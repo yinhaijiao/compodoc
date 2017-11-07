@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
+import * as _ from 'lodash';
 
 import { logger } from '../../logger';
 import { DependenciesEngine } from './dependencies.engine';
@@ -10,7 +11,7 @@ import { CoverageEngine } from './coverage.engine';
 import { ExportData } from '../interfaces/export-data.interface';
 
 const traverse = require('traverse'),
-    PdfPrinter = require('pdfmake');
+      PdfPrinter = require('pdfmake');
 
 export class ExportPdfEngine {
     constructor(
@@ -18,6 +19,122 @@ export class ExportPdfEngine {
         private dependenciesEngine: DependenciesEngine,
         private fileEngine: FileEngine = new FileEngine(),
         private coverageEngine: CoverageEngine) {
+    }
+
+    generateModulesContent() {
+        let data = [];
+        _.forEach(this.configuration.mainData.modules, (module) => {
+            data.push({
+                text: `${module.name}`,
+                style: 'subheader',
+                margin: [0, 15, 0, 15]
+            });
+
+            data.push({
+                text: `Filename :`,
+                bold: true,
+                margin: [0, 10]
+            });
+
+            data.push({
+                text: `${module.file}`,
+                margin: [0, 5]
+            });
+
+            if (module.rawdescription != '') {
+
+                data.push({
+                    text: `Description :`,
+                    bold: true,
+                    margin: [0, 10]
+                });
+
+                data.push({
+                    text: `${module.rawdescription}`,
+                    margin: [0, 5]
+                });
+
+            }
+
+            if (module.declarations.length > 0) {
+                data.push({
+                    text: `Declarations :`,
+                    bold: true,
+                    margin: [0, 10]
+                });
+
+                let list = {ul:[]};
+
+                _.forEach(module.declarations, (declaration) => {
+                    list.ul.push({
+                        text: `${declaration.name}`
+                    });
+                });
+
+                data.push(list);
+            }
+
+            if (module.providers.length > 0) {
+                data.push({
+                    text: `Providers :`,
+                    bold: true,
+                    margin: [0, 10]
+                });
+
+                let list = {ul:[]};
+
+                _.forEach(module.providers, (provider) => {
+                    list.ul.push({
+                        text: `${provider.name}`
+                    });
+                });
+
+                data.push(list);
+            }
+
+            if (module.imports.length > 0) {
+                data.push({
+                    text: `Imports :`,
+                    bold: true,
+                    margin: [0, 10]
+                });
+
+                let list = {ul:[]};
+
+                _.forEach(module.imports, (importRef) => {
+                    list.ul.push({
+                        text: `${importRef.name}`
+                    });
+                });
+
+                data.push(list);
+            }
+
+            if (module.exports.length > 0) {
+                data.push({
+                    text: `Exports :`,
+                    bold: true,
+                    margin: [0, 10]
+                });
+
+                let list = {ul:[]};
+
+                _.forEach(module.exports, (exportRef) => {
+                    list.ul.push({
+                        text: `${exportRef.name}`
+                    });
+                });
+
+                data.push(list);
+            }
+
+            data.push({
+                text: ` `,
+                margin: [0, 0, 0, 20]
+            });
+        });
+
+        return data;
     }
 
     export(outputFolder, data) {
@@ -36,7 +153,9 @@ export class ExportPdfEngine {
             styles: {
                 header: {
                     fontSize: 18,
-                    bold: true
+                    bold: true,
+                    color: '#008cff',
+                    margin: [0, 0, 0, 15]
                 },
                 subheader: {
                     fontSize: 15,
@@ -83,12 +202,14 @@ export class ExportPdfEngine {
         });
 
         docDefinition.content.push({
-            text: 'Second page',
+            text: 'Modules',
             tocItem: true,
             style: 'header'
         });
 
-        docDefinition.content.push(this.coverageEngine.calculateTable())
+        docDefinition.content.push(this.generateModulesContent());
+
+        docDefinition.content.push(...this.coverageEngine.calculateTable())
 
         let pdfDoc = printer.createPdfKitDocument(docDefinition);
 

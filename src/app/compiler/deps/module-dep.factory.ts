@@ -26,6 +26,7 @@ export class ModuleDepFactory {
             exports: this.moduleHelper.getModuleExports(properties),
             bootstrap: this.moduleHelper.getModuleBootstrap(properties),
             type: 'module',
+            rawdescription: IO.rawdescription,
             description: IO.description,
             sourceCode: srcFile.getText()
         } as IModuleDep;
@@ -39,6 +40,7 @@ export interface IModuleDep extends IDep {
     imports: Array<any>;
     exports: Array<any>;
     bootstrap: any;
+    rawdescription: string;
     description: string;
     sourceCode: string;
 }

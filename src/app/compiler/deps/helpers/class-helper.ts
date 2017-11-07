@@ -135,8 +135,10 @@ export class ClassHelper {
          * Copyright https://github.com/ng-bootstrap/ng-bootstrap
          */
         let symbol = this.typeChecker.getSymbolAtLocation(classDeclaration.name);
+        let rawdescription = '';
         let description = '';
         if (symbol) {
+            rawdescription = ts.displayPartsToString(symbol.getDocumentationComment());
             description = marked(ts.displayPartsToString(symbol.getDocumentationComment()));
         }
         let className = classDeclaration.name.text;
@@ -226,6 +228,7 @@ export class ClassHelper {
                         fileName,
                         className,
                         description,
+                        rawdescription: rawdescription,
                         jsdoctags: jsdoctags
                     }];
                 } else {
