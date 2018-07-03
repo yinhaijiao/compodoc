@@ -22,7 +22,7 @@
                             {{#compare context "!==" 'overview'}} href="{{relativeURL depth pageType 'root'}}overview.html" {{/compare}}
                             {{#compare context "!==" 'readme'}} href="{{relativeURL depth pageType 'root'}}overview.html" {{/compare}}
                             data-type="chapter-link">
-                            <span class="fa fa-fw fa-th"></span>Overview
+                            <span class="fa fa-fw fa-th"></span>{{translate 'Overview'}}
                         </a>
                     </li>
                     <li class="link">
@@ -32,7 +32,7 @@
                     <li class="link">
                         <a href="{{relativeURL depth pageType 'root'}}index.html"
                             data-type="chapter-link">
-                            <span class="fa fa-fw fa-th" ></span>Overview
+                            <span class="fa fa-fw fa-th" ></span>{{translate 'Overview'}}
                         </a>
                     </li>
                 {{/if}}
@@ -52,7 +52,7 @@
                     <li class="link">
                         <a href="{{relativeURL depth pageType 'root'}}dependencies.html"
                             data-type="chapter-link">
-                            <span class="fa fa-fw fa-list"></span>Dependencies
+                            <span class="fa fa-fw fa-list"></span>{{translate 'Dependencies'}}
                         </a>
                     </li>
                 {{/orLength}}
@@ -97,7 +97,7 @@
                     {{/compare}}
                 >
                     <span class="fa fa-fw fa-archive"></span>
-                    <span class="link-name">Modules</span>
+                    <span class="link-name">{{translate 'Modules'}}</span>
                     <span class="fa fa-angle-down"></span>
                 </div>
             </a>
@@ -119,7 +119,7 @@
                                         data-target="#xs-components-links-{{id}}"
                                     {{/compare}}>
                                     <span class="fa fa-fw fa-cogs"></span>
-                                    <span>Components</span>
+                                    <span>{{translate 'Components'}}</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
@@ -145,7 +145,7 @@
                                         data-target="#xs-directives-links-{{id}}"
                                     {{/compare}}>
                                     <span class="fa fa-fw fa-code"></span>
-                                    <span>Directives</span>
+                                    <span>{{translate 'Directives'}}</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
@@ -171,7 +171,7 @@
                                         data-target="#xs-injectables-links-{{id}}"
                                     {{/compare}}>
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
-                                    <span>Injectables</span>
+                                    <span>{{translate 'Injectables'}}</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
@@ -197,7 +197,7 @@
                                         data-target="#xs-pipes-links-{{id}}"
                                     {{/compare}}>
                                     <span class="fa fa-fw fa-plus"></span>
-                                    <span>Pipes</span>
+                                    <span>{{translate 'Pipes'}}</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
@@ -230,7 +230,7 @@
                             data-target="#xs-components-links"
                         {{/compare}}>
                         <span class="fa fa-fw fa-cogs"></span>
-                        <span>Components</span>
+                        <span>{{translate 'Components'}}</span>
                         <span class="fa fa-angle-down"></span>
                     </div>
                     <ul class="links collapse"
@@ -259,7 +259,7 @@
                             data-target="#xs-directives-links"
                         {{/compare}}>
                         <span class="fa fa-fw fa-code"></span>
-                        <span>Directives</span>
+                        <span>{{translate 'Directives'}}</span>
                         <span class="fa fa-angle-down"></span>
                     </div>
                     <ul class="links collapse"
@@ -287,7 +287,7 @@
                     data-target="#xs-classes-links"
                 {{/compare}}>
                 <span class="fa fa-fw fa-file-code-o"></span>
-                <span>Classes</span>
+                <span>{{translate 'Classes'}}</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
@@ -315,7 +315,7 @@
                             data-target="#xs-injectables-links"
                         {{/compare}}>
                         <span class="fa fa-fw fa-long-arrow-down"></span>
-                        <span>Injectables</span>
+                        <span>{{translate 'Injectables'}}</span>
                         <span class="fa fa-angle-down"></span>
                     </div>
                     <ul class="links collapse"
@@ -343,7 +343,7 @@
                     data-target="#xs-interceptors-links"
                 {{/compare}}>
                 <span class="fa fa-fw fa-exchange"></span>
-                <span>Interceptors</span>
+                <span>{{translate 'Interceptors'}}</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
@@ -370,7 +370,7 @@
                     data-target="#xs-interfaces-links"
                 {{/compare}}>
                 <span class="fa fa-fw fa-info"></span>
-                <span>Interfaces</span>
+                <span>{{translate 'Interfaces'}}</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
@@ -398,7 +398,7 @@
                             data-target="#xs-pipes-links"
                         {{/compare}}>
                         <span class="fa fa-fw fa-plus"></span>
-                        <span>Pipes</span>
+                        <span>{{translate 'Pipes'}}</span>
                         <span class="fa fa-angle-down"></span>
                     </div>
                     <ul class="links collapse"
@@ -426,7 +426,7 @@
                     data-target="#xs-miscellaneous-links"
                 {{/compare}}>
                 <span class="fa fa-fw fa-cubes"></span>
-                <span>Miscellaneous</span>
+                <span>{{translate 'Miscellaneous'}}</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
@@ -437,22 +437,22 @@
                 {{/compare}}>
                 {{#compare miscellaneous.enumerations.length ">" 0 }}
                     <li class="link">
-                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/enumerations.html" data-type="entity-link">{{translate 'Enums'}}</a>
                     </li>
                 {{/compare}}
                 {{#compare miscellaneous.functions.length ">" 0 }}
                     <li class="link">
-                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/functions.html" data-type="entity-link">{{translate 'Functions'}}</a>
                     </li>
                 {{/compare}}
                 {{#compare miscellaneous.typealiases.length ">" 0 }}
                     <li class="link">
-                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
+                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/typealiases.html" data-type="entity-link">{{translate 'Type aliases'}}</a>
                     </li>
                 {{/compare}}
                 {{#compare miscellaneous.variables.length ">" 0 }}
                     <li class="link">
-                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                      <a href="{{relativeURL depth 'miscellaneous'}}miscellaneous/variables.html" data-type="entity-link">{{translate 'Variables'}}</a>
                     </li>
                 {{/compare}}
             </ul>

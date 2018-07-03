@@ -37,6 +37,7 @@ import { ConfigurationInterface } from '../interfaces/configuration.interface';
 import { ElementAloneHelper } from './html-engine-helpers/element-alone.helper';
 import { HasOwnHelper } from './html-engine-helpers/has-own.helper';
 import { ShortURLHelper } from './html-engine-helpers/short-url.helper';
+import { LocalesHelper } from './html-engine-helpers/locales.helper';
 
 export class HtmlEngineHelpers {
     public registerHelpers(
@@ -76,6 +77,7 @@ export class HtmlEngineHelpers {
         this.registerHelper(bars, 'element-alone', new ElementAloneHelper(dependenciesEngine));
         this.registerHelper(bars, 'hasOwn', new HasOwnHelper());
         this.registerHelper(bars, 'short-url', new ShortURLHelper());
+        this.registerHelper(bars, 'translate', new LocalesHelper(configuration));
     }
 
     private registerHelper(bars, key: string, helper: IHtmlEngineHelper) {

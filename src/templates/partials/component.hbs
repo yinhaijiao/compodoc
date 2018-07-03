@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li>Components</li>
+  <li>{{translate 'Components'}}</li>
   <li>{{component.name}}</li>
 </ol>
 
@@ -60,7 +60,7 @@
     <div class="tab-pane fade {{#isInitialTab navTabs "example"}}active in{{/isInitialTab}}" id="c-example">
         {{#each component.exampleUrls}}
             <iframe src="{{this}}">
-                <p>Your browser does not support iframes.</p>
+                <p>{{translate 'Your-browser-does-not-support-iframes'}}</p>
             </iframe>
         {{/each}}
     </div>

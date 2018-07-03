@@ -143,6 +143,7 @@ Note: Certain tabs will only be shown if applicable to a given dependency`,
             .option('--customFavicon [path]', 'Use a custom favicon')
             .option('--gaID [id]', 'Google Analytics tracking ID')
             .option('--gaSite [site]', 'Google Analytics site name', COMPODOC_DEFAULTS.gaSite)
+            .option('-l, --locales [locales]', 'TODO')
             .parse(process.argv);
 
         let outputHelp = () => {
@@ -477,6 +478,12 @@ Note: Certain tabs will only be shown if applicable to a given dependency`,
         }
         if (program.tsconfig) {
             this.configuration.mainData.tsconfig = program.tsconfig;
+        }
+
+        if (program.locales) {
+            this.configuration.mainData.locales = program.locales;
+        } else {
+            this.configuration.mainData.locales = 'en';
         }
 
         if (configFile.files) {

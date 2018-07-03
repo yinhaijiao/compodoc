@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li>Directives</li>
+  <li>{{translate 'Directives'}}</li>
   <li>{{directive.name}}</li>
 </ol>
 
@@ -15,7 +15,7 @@
     {{#isTabEnabled navTabs "info"}}
     <div class="tab-pane fade {{#isInitialTab navTabs "info"}}active in{{/isInitialTab}}" id="c-info">
         <p class="comment">
-            <h3>File</h3>
+            <h3>{{translate 'File'}}</h3>
         </p>
         <p class="comment">
             <code>{{directive.file}}</code>
@@ -23,7 +23,7 @@
 
         {{#if directive.description}}
             <p class="comment">
-                <h3>Description</h3>
+                <h3>{{translate 'Description'}}</h3>
             </p>
             <p class="comment">
                 {{{parseDescription directive.description depth}}}
@@ -32,7 +32,7 @@
 
         {{#if directive.implements}}
             <p class="comment">
-                <h3>Implements</h3>
+                <h3>{{translate 'Implements'}}</h3>
             </p>
             <p class="comment">
                 {{#each directive.implements}}
@@ -43,7 +43,7 @@
 
         {{#if directive.jsdoctags}}
             <p class="comment">
-                <h3>Example</h3>
+                <h3>{{translate 'Example'}}</h3>
             </p>
             <div class="io-description">
                 {{#jsdoc-code-example directive.jsdoctags}}
@@ -57,7 +57,7 @@
         {{/if}}
 
         <section>
-            <h3>Metadata</h3>
+            <h3>{{translate 'Metadata'}}</h3>
             <table class="table table-sm table-hover">
                 <tbody>
                     {{#if directive.providers}}
@@ -139,7 +139,7 @@
     <div class="tab-pane fade {{#isInitialTab navTabs "example"}}active in{{/isInitialTab}}" id="c-example">
         {{#each directive.exampleUrls}}
             <iframe src="{{this}}" style="height: 100vh; width: 100%;">
-                <p>Your browser does not support iframes.</p>
+                <p>{{translate 'Your-browser-does-not-support-iframes'}}</p>
             </iframe>
         {{/each}}
     </div>

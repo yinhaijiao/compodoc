@@ -60,4 +60,5 @@ export interface MainDataInterface {
     packagePeerDependencies: Object[];
     gaID: string;
     gaSite: string;
+    locales: string;
 }
